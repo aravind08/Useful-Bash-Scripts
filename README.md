@@ -4,6 +4,7 @@
 
     alias ..='cd ../'                           # Go back 1 directory level
     alias ...='cd ../../'                       # Go back 2 directory levels
+    alias ....='cd ../../../'                   # Go back 3 directory levels    
     alias .3='cd ../../../'                     # Go back 3 directory levels    
     alias .4='cd ../../../../'                  # Go back 4 directory levels
     alias .5='cd ../../../../../'               # Go back 5 directory levels
@@ -23,14 +24,17 @@
 
 
 ### Git commands
-    alias gf='git fetch'                        # Git pull branches 
+    alias gg='git pull'                         # Git pull & merge all branches 
     alias gs='git status'                       # Git check status
     alias gd='git diff'                         # Git diff
     alias gb='git branch'                       # Git branch
     alias gc='git commit -m $1'                 # Git commit with message
     alias ga='git add .'                        # Git safe-add all
-    alias gg='git push'                         # Git push all branches
-    alias go='git checkout $1'                  # Git checkout to existing branch
+    alias gp='git push'                         # Git push all branches
+    # Git print all files in conflicted state
+    alias gconf='git ls-files -u | awk '{print $4}' | sort -u'
+    # Git delete the local branches that have been merged into the HEAD
+    alias gdel='git branch -d $(git branch --merged | grep -v '^*' | tr -d '\n')'
 
 
 ### Git current branch in prompt.
